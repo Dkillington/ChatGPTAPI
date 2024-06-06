@@ -1,11 +1,16 @@
 from openai import OpenAI
+from dotenv import load_dotenv
+
+import os
 import sys
+
+load_dotenv()
 
 def main(args):
    # Join the arguments into a single string to pass as the user's message
   user_message = ' '.join(args)
 
-  client = OpenAI(api_key="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")
+  client = OpenAI(api_key = os.getenv('OPENAI_API_KEY')) # Your Open AI Key goes here - reference your .env file
   _model = "gpt-3.5-turbo" # Model name
 
   GPTResponse = client.chat.completions.create(model=_model, messages=[{"role": "system", "content": "Respond according to the prompt I give you."}, {"role": "user", "content": user_message}], temperature= 1, max_tokens= 500)
