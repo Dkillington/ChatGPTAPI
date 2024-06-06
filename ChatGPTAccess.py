@@ -6,7 +6,7 @@ def main(args):
   user_message = ' '.join(args)
 
   client = OpenAI(api_key="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")
-  _model = "gpt-3.5-turbo" # Model name typo
+  _model = "gpt-3.5-turbo" # Model name
 
   GPTResponse = client.chat.completions.create(model=_model, messages=[{"role": "system", "content": "Respond according to the prompt I give you."}, {"role": "user", "content": user_message}], temperature= 1, max_tokens= 500)
   print(GPTResponse.choices[0].message.content)
